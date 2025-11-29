@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const AdlukkApp());
+void main() {
+  runApp(const AdlukkApp());
+}
 
 class AdlukkApp extends StatelessWidget {
   const AdlukkApp({super.key});
@@ -8,23 +10,24 @@ class AdlukkApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "ADLUKK Education",
-      home: const HomeScreen(),
+      title: 'ADLUKK App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const PlaceholderScreen(),
     );
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class PlaceholderScreen extends StatelessWidget {
+  const PlaceholderScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text(
-          "Welcome to ADLUKK",
-          style: TextStyle(fontSize: 22),
-        ),
+        child: Text('ADLUKK Project Initialized. Build succeeded.',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
       ),
     );
   }
