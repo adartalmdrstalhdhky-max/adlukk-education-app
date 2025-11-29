@@ -1,46 +1,36 @@
-name: Flutter CI - build apk & web
+  - name: Set up Flutter
+    uses: subosito/flutter-action@v2
+    with:
+      # هذا هو الإصدار الذي ثبت أنه يعمل، تم تعديله من 3.10.0
+      flutter-version: '3.19.6' 
+      channel: 'stable'
 
-on:
-  push:
-    branches: [ feat/flutter-setup, main ]
-  workflow_dispatch:
+  - name: Enable web
+    working-directory: app
+    run: flutter config --enable-web
 
-jobs:
-  setup-and-build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+  - name: Install dependencies
+    working-directory: app
+    run: flutter pub get
 
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.16.8' # تم التعديل لتحديد إصدار ثابت
-          channel: 'stable' # تم التعديل لتحديد قناة الإصدار
+  # خطوة تصحيح الخطأ "Could not find an option named release"
+  # تم إضافة "--web-renderer html" لحل مشكلة البناء في البيئة التلقائية
+  - name: Build web
+    working-directory: app
+    run: flutter build web --web-renderer html --release
 
-      - name: Enable web
-        run: flutter config --enable-web
+  - name: Build APK (release)
+    working-directory: app
+    run: flutter build apk --release
 
-      - name: Install dependencies
-        working-directory: app
-        run: flutter pub get
+  - name: Upload web artifact
+    uses: actions/upload-artifact@v4
+    with:
+      name: adlukk-web
+      path: app/build/web
 
-      - name: Build web
-        working-directory: app
-        run: flutter build web --release
-
-      - name: Build APK (release)
-        working-directory: app
-        run: flutter build apk --release
-
-      - name: Upload Web artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: adlukk-web
-          path: app/build/web
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: adlukk-apk
-          path: app/build/app/outputs/flutter-apk/app-release.apk
+  - name: Upload APK artifact
+    uses: actions/upload-artifact@v4
+    with:
+      name: adlukk-apk
+      path: app/build/app/outputs/flutter-apk/app-release.apk
