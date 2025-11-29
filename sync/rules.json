@@ -1,0 +1,6 @@
+{
+  "conflict_resolution": {
+    "prefer_newest_timestamp": true,
+    "manual_review_required": false
+  }
+}
