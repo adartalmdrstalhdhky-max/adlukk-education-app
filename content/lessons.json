@@ -1,0 +1,9 @@
+{
+  "lessons": [
+    {
+      "id": 1,
+      "title": "Introduction Lesson",
+      "book_id": 1
+    }
+  ]
+}
