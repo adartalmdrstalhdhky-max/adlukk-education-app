@@ -1,43 +1,23 @@
 name: adlukk_app
-description: A new Flutter project.
+description: ADLUKK Global Education Platform
 publish_to: "none"
-
-version: 1.0.0+1
-
 environment:
-  sdk: ">=3.0.0 <4.0.0"
-
+sdk: ">=2.17.0 <4.0.0"
 dependencies:
-  flutter:
-    sdk: flutter
-
-  # Isar database (الإصدار الصحيح الذي يعمل)
-  isar: ^3.1.0+1
-  isar_flutter_libs: ^3.1.0+1
-
-  # مزامنة HTTP
-  http: ^1.1.0
-
-  # إدارة الحالة
-  provider: ^6.0.5
-
-  # تخزين مؤقت
-  shared_preferences: ^2.2.2
-
-  # واجهات
-  flutter_svg: ^2.0.7
-
-  # أدوات مساعدة
-  path_provider: ^2.1.1
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-  flutter_lints: ^3.0.1
-
 flutter:
-  uses-material-design: true
-
-  assets:
-    - assets/
+sdk: flutter
+State Management
+provider: ^6.1.1 # لإدارة حالة التطبيق
+Local Database
+isar: ^3.1.0+1 # قاعدة بيانات محلية عالية الأداء
+isar_flutter_libs: ^3.1.0+1 # ملفات المكتبة الخاصة بالمنصات
+dev_dependencies:
+flutter_test:
+sdk: flutter
+Code Generation for Isar
+isar_generator: ^3.1.0+1 # لتوليد كود نماذج البيانات
+build_runner: ^2.4.7 # لتشغيل مُولّد الكود
+flutter:
+uses-material-design: true
+assets:
+- assets/
