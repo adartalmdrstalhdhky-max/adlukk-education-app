@@ -1,50 +1,53 @@
-name: Flutter CI - build apk & web
+name: Flutter CI
 
 on:
   push:
-    branches: [ feature/flutter-setup, main ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   setup-and-build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: adlukk-education-app/app
+
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Flutter
-        uses: subosito/flutter-action@v2
+      - uses: subosito/flutter-action@v2
         with:
-          # هذا هو الإصدار الذي ثبت أنه يعمل تم تعديله من 3.10.0
-          flutter-version: '3.19.6' 
           channel: 'stable'
+          # Required for Isar code generation
+          cache-key: ${{ runner.os }}-flutter-${{ hashFiles('adlukk-education-app/app/pubspec.lock') }}
 
-      - name: Enable web
-        working-directory: app
+      - name: Enable Web
         run: flutter config --enable-web
 
-      - name: Install dependencies
-        working-directory: app
+      - name: Install Dependencies
         run: flutter pub get
 
-      # خطوة تصحيح الخطأ في بناء الويب
-      # تم إضافة web-renderer html لحل مشكلة البناء في البيئة التلقائية
-      - name: Build web
-        working-directory: app
+      # --- NEW STEP: Code Generation (Isar) ---
+      - name: Run Code Generation
+        run: flutter pub run build_runner build --delete-conflicting-outputs
+        
+      - name: Build Web
         run: flutter build web --web-renderer html --release
 
-      - name: Build APK (release)
-        working-directory: app
+      - name: Build APK (Release)
         run: flutter build apk --release
 
-      - name: Upload web artifact
+      - name: Upload Web Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: adlukk-web
-          path: app/build/web
-
-      - name: Upload APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: adlukk-apk
-          path: app/build/app/outputs/flutter-apk/app-release.apk
+          name: web-release
+          path: adlukk-education-app/app/build/web
           
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release
+          path: adlukk-education-app/app/build/app/outputs/flutter-apk/app-release.apk
