@@ -1,20 +1,46 @@
 // app/lib/core/sync_service.dart
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
+
+// Represents a pending sync operation that needs to be uploaded to the backend.
+typedef PendingOperation = Map<String, dynamic>;
 
 class SyncService {
-  // مثال مبدئي: وضع عمليات المزامنة في قائمة (queue) محلية ثم إرسالها للسيرفر
-  final List<Map<String, dynamic>> _queue = [];
+  final List<PendingOperation> _pendingQueue = [];
 
-  void enqueue(Map<String, dynamic> op) {
-    _queue.add(op);
-    print('Enqueued operation: ${jsonEncode(op)}');
+  // Adds an operation to the queue and notifies listeners (though we don't have them yet).
+  void enqueue(PendingOperation operation) {
+    _pendingQueue.add(operation);
+    if (kDebugMode) {
+      debugPrint('SyncService: Enqueued operation: ${jsonEncode(operation)}');
+    }
+    // In a real app, this would trigger a sync attempt.
   }
 
-  List<Map<String, dynamic>> pending() => List.from(_queue);
-
-  void clear() {
-    _queue.clear();
+  // Returns all currently pending operations.
+  List<PendingOperation> pending() {
+    return List.unmodifiable(_pendingQueue);
   }
 
-  // لاحقًا سنربط هذا بالـ backend API لرفع/تحميل التغييرات
+  // Placeholder for the actual sync logic
+  Future<void> sync() async {
+    if (_pendingQueue.isEmpty) {
+      if (kDebugMode) debugPrint('SyncService: No pending operations to sync.');
+      return;
+    }
+
+    if (kDebugMode) {
+      debugPrint('SyncService: Starting sync for ${_pendingQueue.length} items...');
+    }
+
+    // Simulate network delay and successful sync
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Clear the queue after successful simulation
+    // _pendingQueue.clear();
+
+    if (kDebugMode) debugPrint('SyncService: Sync completed successfully (Simulated).');
+  }
+
+  // Placeholder for initialization and other logic
 }
