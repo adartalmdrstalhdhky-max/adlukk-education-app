@@ -1,56 +1,33 @@
 import 'package:hive/hive.dart';
 import 'models/book_model.dart';
+import 'models/lesson_model.dart';
 
 class BookStorageService {
-  static const String boxName = 'booksBox';
+  static const String bookBoxName = "books";
+  static const String lessonBoxName = "lessons";
 
-  /// فتح صندوق Hive
-  static Future<Box<BookModel>> _openBox() async {
-    if (!Hive.isBoxOpen(boxName)) {
-      return await Hive.openBox<BookModel>(boxName);
-    }
-    return Hive.box<BookModel>(boxName);
-  }
-
-  /// إضافة كتاب
   static Future<void> addBook(BookModel book) async {
-    final box = await _openBox();
+    final box = await Hive.openBox<BookModel>(bookBoxName);
     await box.put(book.id, book);
   }
 
-  /// تحديث بيانات كتاب
-  static Future<void> updateBook(BookModel book) async {
-    final box = await _openBox();
-    await box.put(book.id, book);
-  }
-
-  /// حذف كتاب
-  static Future<void> deleteBook(String id) async {
-    final box = await _openBox();
-    await box.delete(id);
-  }
-
-  /// جلب جميع الكتب
   static Future<List<BookModel>> getAllBooks() async {
-    final box = await _openBox();
+    final box = await Hive.openBox<BookModel>(bookBoxName);
     return box.values.toList();
   }
 
-  /// جلب الكتب حسب الصف
-  static Future<List<BookModel>> getBooksByGrade(String grade) async {
-    final box = await _openBox();
-    return box.values.where((b) => b.grade == grade).toList();
+  static Future<void> addLesson(LessonModel lesson) async {
+    final box = await Hive.openBox<LessonModel>(lessonBoxName);
+    await box.put(lesson.id, lesson);
   }
 
-  /// جلب كتاب واحد
-  static Future<BookModel?> getBookById(String id) async {
-    final box = await _openBox();
-    return box.get(id);
+  static Future<List<LessonModel>> getAllLessons() async {
+    final box = await Hive.openBox<LessonModel>(lessonBoxName);
+    return box.values.toList();
   }
 
-  /// حذف جميع الكتب
-  static Future<void> clearBooks() async {
-    final box = await _openBox();
-    await box.clear();
+  static Future<List<LessonModel>> getLessonsByBookId(String bookId) async {
+    final allLessons = await getAllLessons();
+    return allLessons.where((lesson) => lesson.bookId == bookId).toList();
   }
 }
