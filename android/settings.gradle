@@ -1,0 +1,2 @@
+rootProject.name = 'adlik'
+include ':app'
