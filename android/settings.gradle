@@ -1,2 +1,3 @@
-rootProject.name = 'adlik'
 include ':app'
+
+rootProject.name = "AdlukkEducationApp"
