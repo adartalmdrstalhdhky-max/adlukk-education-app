@@ -1,1 +1,3 @@
-
+#!/usr/bin/env sh
+# Unix/Linux/Mac OS Gradle wrapper script
+# ينسخ كما هو من مشروع Flutter جديد
