@@ -1,0 +1,11 @@
+/* هذا ملف مشروع Xcode الأساسي لمشروع MacOS */
+{
+  archiveVersion = 1;
+  classes = {
+  };
+  objectVersion = 120;
+  objects = {
+    /* إعدادات البناء للأهداف والملفات */
+  };
+  rootObject = 1234567890ABCDEF12345678 /* Project object */;
+}
