@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import '../../../../core/entities/course_entity.dart';
+import '../../../../core/services/hive_service.dart';
+
+class CourseProvider extends ChangeNotifier {
+  final HiveService hiveService;
+  
+  CourseProvider({required this.hiveService});
+
+  // 📝 قائمة الكورسات التي سيتم عرضها
+  List<CourseEntity> _courses = [];
+  List<CourseEntity> get courses => _courses;
+
+  // 🔄 دالة لجلب جميع الكورسات من قاعدة بيانات Hive
+  void loadCourses() {
+    _courses = hiveService.coursesBox.values.toList();
+    notifyListeners();
+  }
+
+  // ➕ دالة لحفظ كورس جديد
+  Future<void> addCourse(CourseEntity course) async {
+    await hiveService.coursesBox.put(course.id, course);
+    loadCourses(); // تحديث القائمة بعد الإضافة
+  }
+
+  // 🗑️ دالة لحذف كورس
+  Future<void> deleteCourse(String id) async {
+    await hiveService.coursesBox.delete(id);
+    loadCourses(); // تحديث القائمة بعد الحذف
+  }
+}
