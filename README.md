@@ -83,5 +83,5 @@ All rights reserved.
 
 ## 📬 Contact  
 For official communication:  
-📧 adlik-support@edu.app
+
 
