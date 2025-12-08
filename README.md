@@ -1,11 +1,11 @@
 
-# 📘 Adlik Core — The Official Education Platform Engine  
-The complete backend & client foundation for the **Adlik Smart School System**, designed to power the future of smart education in Yemen and around the world.
+# 📘 Adlk Core — The Official Education Platform Engine  
+The complete backend & client foundation for the **Adlk Smart School System**, designed to power the future of smart education in Yemen and around the world.
 
 ---
 
 ## 🚀 Vision  
-Adlik Core is the heart of the upcoming **Adlik Smart School Application**, which will serve millions of students and teachers — both online and offline — in all regions, including rural areas with no internet access.
+Adlik Core is the heart of the upcoming **Adlk Smart School Application**, which will serve millions of students and teachers — both online and offline — in all regions, including rural areas with no internet access.
 
 The system aims to solve real educational problems caused by school closures, lack of teachers, and lack of books.  
 Adlik will become a complete school management ecosystem that works **with or without internet**, and synchronizes automatically when a connection becomes available.
@@ -23,7 +23,7 @@ Adlik will become a complete school management ecosystem that works **with or wi
 ---
 
 ## 🏗 Project Structure (Core)  
-This repository contains the foundation for the full Adlik ecosystem:
+This repository contains the foundation for the full Adlk ecosystem:
 
 /adlik-core ├── docs/               → Documentation (Roadmap, Structure, API) ├── lib/                → Flutter source code │   ├── core/           → Base engine + offline system │   ├── modules/        → Features (schools, teachers, students, AI) │   ├── ui/             → Screens, widgets, themes │   ├── services/       → Local DB, sync system, APIs │   └── main.dart       → App entry point ├── assets/             → Books, images, icons, fonts ├── scripts/            → Build, automation, dev tools └── README.md
 
