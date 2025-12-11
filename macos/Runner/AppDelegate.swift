@@ -1,12 +1,13 @@
 import Cocoa
 import FlutterMacOS
 
-@NSApplicationMain
+@main
 class AppDelegate: FlutterAppDelegate {
-  override func applicationDidFinishLaunching(_ notification: Notification) {
-    let flutterViewController = mainFlutterWindow?.contentViewController as? FlutterViewController
-    // Plugin registrations are handled automatically by GeneratedPluginRegistrant
-    GeneratedPluginRegistrant.register(with: flutterViewController)
-    super.applicationDidFinishLaunching(notification)
+  override func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
+    return true
+  }
+
+  override func applicationSupportsSecureRestorableState(_ app: NSApplication) -> Bool {
+    return true
   }
 }
