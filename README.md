@@ -82,6 +82,6 @@ All rights reserved.
 ---
 
 ## 📬 Contact  
-For official communication:  
+For official communication:  adartalmdrstalhdhky@gmail.com
 
 
