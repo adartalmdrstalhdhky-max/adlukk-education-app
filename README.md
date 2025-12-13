@@ -16,7 +16,7 @@ Adlik will become a complete school management ecosystem that works **with or wi
 - Build a **complete school system** (manager, teachers, classes, students).  
 - Provide **all Yemeni curricula** (Grades 1–12).  
 - Work **offline-first** for rural villages.  
-- Include a built-in **AI learning assistant** using ChatGPT-style models.  
+- Include a built-in **AI learning assistant** using -style models.  
 - Provide school analytics, progress tracking, exams, and certificates.  
 - Make the app expandable globally in the future.
 
