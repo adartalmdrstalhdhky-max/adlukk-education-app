@@ -49,7 +49,7 @@ Adlik integrates two AI systems:
 - Small local LLM for grammar correction, answering questions, and helping students.  
 - Works without internet in rural areas.
 
-### 2️⃣ **GPT-Powered Cloud AI (Online)**  
+### 2️⃣ **-Powered Cloud AI (Online)**  
 - Used when connection is available.  
 - Provides advanced answers, explanations, and analysis.
 
