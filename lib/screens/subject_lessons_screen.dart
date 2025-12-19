@@ -1,11 +1,21 @@
-// subjects_screen.dart
 import 'package:flutter/material.dart';
-class SubjectsScreen extends StatelessWidget {
+
+class SubjectLessonsScreen extends StatelessWidget {
+final String subjectName;
+SubjectLessonsScreen({required this.subjectName});
+
 @override
 Widget build(BuildContext context) {
 return Scaffold(
-appBar: AppBar(title: Text('كافة المواد')),
-body: ListWheelScrollView(itemExtent: 100, children: [Card(child: Text('العلوم')), Card(child: Text('الحاسوب'))]),
+appBar: AppBar(title: Text('دروس $subjectName')),
+body: ListView.builder(
+itemCount: 10,
+itemBuilder: (context, index) => ListTile(
+title: Text('الدرس رقم ${index + 1}'),
+leading: Icon(Icons.play_lesson),
+onTap: () {},
+),
+),
 );
 }
 }
