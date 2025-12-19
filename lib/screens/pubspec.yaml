@@ -1,0 +1,20 @@
+name: adlak_smart_school
+description: A new Flutter project for Adlak Smart School.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  # سنضيف هنا مكتبات Firebase و الفيديو لاحقا
+
+flutter:
+  uses-material-design: true
+  # هنا يتم تعريف شعار ادلك ونور المستقبل
+  assets:
+    - assets/images/logo.png
+    - assets/data/lessons.json
+    
