@@ -1,0 +1,13 @@
+// lib/core/di/app_services.dart
+import '../repos/students_repo.dart';
+import '../repos/teachers_repo.dart';
+import '../repos/grades_repo.dart';
+import '../repos/content_repo.dart';
+
+class AppServices {
+  final StudentsRepo students;
+  final TeachersRepo teachers;
+  final GradesRepo grades;
+  final ContentRepo content;
+  AppServices({required this.students, required this.teachers, required this.grades, required this.content});
+}
